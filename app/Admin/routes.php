@@ -16,5 +16,6 @@ Route::group([
     $router->resource('/description', prodDescController::class);
     $router->resource('/invoice', invoiceController::class);
     $router->resource('/category', categoryController::class);
+    $router->resource('/banner', bannerController::class);
 
 });

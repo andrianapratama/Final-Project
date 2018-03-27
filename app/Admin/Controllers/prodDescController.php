@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\ProductDesc;
 use App\User;
 
 use Encore\Admin\Form;
@@ -71,7 +72,7 @@ class prodDescController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(User::class, function (Grid $grid) {
+        return Admin::grid(ProductDesc::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
             $grid->descID('Description ID')->sortable();
@@ -90,9 +91,25 @@ class prodDescController extends Controller
      */
     protected function form()
     {
-        return Admin::form(User::class, function (Form $form) {
+        return Admin::form(ProductDesc::class, function (Form $form) {
 
             $form->display('id', 'ID');
+            $form->select('size', 'Size')->options(['val1' => '28',
+                                                                  'val2' => '29',
+                                                                  'val3' => '30',
+                                                                  'val4' => '31',
+                                                                  'val5' => '32',
+                                                                  'val6' => '33',
+                                                                  'val7' => '34',
+                                                                  'val8' => '36',
+                                                                  'val9' => '38',
+                                                                  'val10' => '40',
+                                                                  'val11' => '41',
+                                                                  'val12' => '42',
+                                                                  'val13' => '43',
+                                                                  'val14' => '44',
+                                                                  'val15' => '45',]);
+            $form->number('stock', 'Stock');
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');

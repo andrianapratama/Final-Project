@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Invoice;
 use App\User;
 
 use Encore\Admin\Form;
@@ -71,7 +72,7 @@ class invoiceController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(User::class, function (Grid $grid) {
+        return Admin::grid(Invoice::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
             $grid->userID('User ID')->sortable();
@@ -93,9 +94,14 @@ class invoiceController extends Controller
      */
     protected function form()
     {
-        return Admin::form(User::class, function (Form $form) {
+        return Admin::form(Invoice::class, function (Form $form) { //form itu adalah saat lu mengisi survey maka di survery nya pasti ada form (exp: form nama, form tanggal, form age,dsb)
 
             $form->display('id', 'ID');
+            $form->number('totalPrice', 'Total Price');
+            $form->datetime('orderDate', 'Order Date');
+            $form->select('paymentType', 'Payment Type')->options(['val1' => 'Bank Transfer', 'val2' => 'Credit Card']);
+            $form->select('paymentStatus', 'Payment Status')->options(['val1' => 'Paid', 'val2' => 'Not Paid']);
+            $form->select('orderStatus', 'Order Status')->options(['val1' => 'Shipped', 'val2' => 'Not Shipped']);;
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');

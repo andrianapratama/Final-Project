@@ -73,7 +73,7 @@ class categoryController extends Controller
     {
         return Admin::grid(User::class, function (Grid $grid) {
 
-            $grid->id('ID')->sortable();
+            $grid->id('ID')->sortable(); //grid adalah untuk menampilkan data
             $grid->name('Name')->sortable();
 
             $grid->created_at();
@@ -91,6 +91,7 @@ class categoryController extends Controller
         return Admin::form(User::class, function (Form $form) {
 
             $form->display('id', 'ID');
+            $form->text('name', 'Name');
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');

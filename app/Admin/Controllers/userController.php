@@ -99,6 +99,15 @@ class userController extends Controller
         return Admin::form(User::class, function (Form $form) {
 
             $form->display('id', 'ID');
+            $form->text('name', 'Name')->rules('required');
+            $form->email('email', 'Email')->rules('required');
+            $form->password('password', 'Password')->rules('required');
+            $form->text('province', 'Province')->rules('required');
+            $form->text('city', 'City')->rules('required');
+            $form->text('district', 'District')->rules('required');
+            $form->number('zip', 'ZIP')->rules('required|min:5');;
+            $form->mobile('phone', 'Phone Number')->rules('required|min:20');
+            $form->text('gender', 'Gender')->rules('required');
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');

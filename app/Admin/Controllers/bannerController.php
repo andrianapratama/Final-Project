@@ -2,8 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\ProductDetail;
-use App\User;
+use App\Banner;
 
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -12,7 +11,7 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 
-class productDetailController extends Controller
+class bannerController extends Controller
 {
     use ModelForm;
 
@@ -72,16 +71,12 @@ class productDetailController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(ProductDetail::class, function (Grid $grid) {
+        return Admin::grid(Banner::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
-            $grid->categoryID('Category ID')->sortable();
-            $grid->brand('Brand')->sortable();
             $grid->name('Name')->sortable();
-            $grid->price('Price')->sortable();
-            $grid->image('Image')->sortable();
-            $grid->description('Description')->sortable();
-            $grid->material('Material')->sortable();
+            $grid->caption('Caption')->sortable();
+            $grid->Image('Image')->sortable();
 
             $grid->created_at();
             $grid->updated_at();
@@ -95,15 +90,12 @@ class productDetailController extends Controller
      */
     protected function form()
     {
-        return Admin::form(ProductDetail::class, function (Form $form) {
+        return Admin::form(Banner::class, function (Form $form) {
 
             $form->display('id', 'ID');
-            $form->text('brand', 'Brand');
             $form->text('name', 'Name');
-            $form->number('price', 'Price');
+            $form->text('caption', 'Caption');
             $form->image('image', 'Image');
-            $form->text('description', 'Description');
-            $form->text('material', 'Material');
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
