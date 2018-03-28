@@ -1,4 +1,4 @@
-<?php
+/*<?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -24,8 +24,8 @@ class CreateInvoicesTable extends Migration
             $table->string('paymentStatus');
             $table->string('orderStatus');
             $table->timestamps();
-            $table->foreign('orderID')->references('id')->on('carts')->onDelete('cascade');
             $table->foreign('userID')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('orderID')->references('id')->on('carts')->onDelete('cascade');
         });
 
         DB::statement('ALTER TABLE invoices ALTER COLUMN id SET DEFAULT uuid_generate_v4();');

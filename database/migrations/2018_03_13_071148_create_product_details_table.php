@@ -19,9 +19,9 @@ class CreateProductDetailsTable extends Migration
             $table->uuid('categoryID')->unsigned();
             $table->string('brand');
             $table->string('name');
-            $table->integer('price')->unsigned();
-            $table->binary('image');
-            $table->text('description');
+            $table->decimal('price')->unsigned();
+            $table->text('image');
+            $table->string('description');
             $table->string('material');
             $table->timestamps();
             $table->foreign('categoryID')->references('id')->on('categories')->onDelete('cascade');

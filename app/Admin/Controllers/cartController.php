@@ -2,6 +2,8 @@
 
 namespace App\Admin\Controllers;
 
+use App\Cart;
+use App\ProductDetail;
 use App\User;
 
 use Encore\Admin\Form;
@@ -11,7 +13,7 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 
-class userController extends Controller
+class cartController extends Controller
 {
     use ModelForm;
 
@@ -71,18 +73,12 @@ class userController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(User::class, function (Grid $grid) {
+        return Admin::grid(Cart::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
-            $grid->name('Name')->sortable();
-            $grid->email('Email')->sortable();
-            $grid->password('Password')->sortable();
-            $grid->province('Province')->sortable();
-            $grid->city('City')->sortable();
-            $grid->district('District')->sortable();
-            $grid->zip('ZIP Code')->sortable();
-            $grid->phone('Phone Number')->sortable();
-            $grid->gender('Gender')->sortable();
+            $grid->productID('Product ID')->sortable();
+            $grid->quantity('Quantity')->sortable();
+            $grid->price('Price')->sortable();
 
             $grid->created_at();
             $grid->updated_at();
@@ -96,18 +92,12 @@ class userController extends Controller
      */
     protected function form()
     {
-        return Admin::form(User::class, function (Form $form) {
+        return Admin::form(Cart::class, function (Form $form) {
 
             $form->display('id', 'ID');
-            $form->text('name', 'Name')->rules('required');
-            $form->email('email', 'Email')->rules('required');
-            $form->password('password', 'Password')->rules('required');
-            $form->text('province', 'Province')->rules('required');
-            $form->text('city', 'City')->rules('required');
-            $form->text('district', 'District')->rules('required');
-            $form->number('zip', 'ZIP')->rules('required|min:5');;
-            $form->mobile('phone', 'Phone Number')->rules('required');
-            $form->select('gender', 'Gender')->rules('required')->options(['Male' => 'Male', 'Female' => 'Female']);
+            $form->select('productID')->options(ProductDetail::all()->pluck('name', 'id'));
+            $form->number('quantity', 'Quantity');
+            $form->number('price', 'Price');
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');

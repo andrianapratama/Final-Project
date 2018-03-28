@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Category;
 use App\User;
 
 use Encore\Admin\Form;
@@ -71,7 +72,7 @@ class categoryController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(User::class, function (Grid $grid) {
+        return Admin::grid(Category::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable(); //grid adalah untuk menampilkan data
             $grid->name('Name')->sortable();
@@ -88,7 +89,7 @@ class categoryController extends Controller
      */
     protected function form()
     {
-        return Admin::form(User::class, function (Form $form) {
+        return Admin::form(Category::class, function (Form $form) {
 
             $form->display('id', 'ID');
             $form->text('name', 'Name');

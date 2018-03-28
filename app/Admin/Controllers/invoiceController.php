@@ -2,9 +2,10 @@
 
 namespace App\Admin\Controllers;
 
+use App\Cart;
 use App\Invoice;
-use App\User;
 
+use App\User;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
@@ -76,6 +77,7 @@ class invoiceController extends Controller
 
             $grid->id('ID')->sortable();
             $grid->userID('User ID')->sortable();
+            $grid->orderID('Order ID')->sortable();
             $grid->totalPrice('Total Price')->sortable();
             $grid->orderDate('Order Date')->sortable();
             $grid->paymentType('Payment Type')->sortable();
@@ -97,11 +99,13 @@ class invoiceController extends Controller
         return Admin::form(Invoice::class, function (Form $form) { //form itu adalah saat lu mengisi survey maka di survery nya pasti ada form (exp: form nama, form tanggal, form age,dsb)
 
             $form->display('id', 'ID');
+            $form->select('userID')->options(User::all()->pluck('name', 'id'));
+            $form->select('orderID')->options(Cart::all()->pluck('id', 'id'));
             $form->number('totalPrice', 'Total Price');
             $form->datetime('orderDate', 'Order Date');
-            $form->select('paymentType', 'Payment Type')->options(['val1' => 'Bank Transfer', 'val2' => 'Credit Card']);
-            $form->select('paymentStatus', 'Payment Status')->options(['val1' => 'Paid', 'val2' => 'Not Paid']);
-            $form->select('orderStatus', 'Order Status')->options(['val1' => 'Shipped', 'val2' => 'Not Shipped']);;
+            $form->select('paymentType', 'Payment Type')->options(['Bank Transfer' => 'Bank Transfer', 'Credit Card' => 'Credit Card']);
+            $form->select('paymentStatus', 'Payment Status')->options(['Paid' => 'Paid', 'Not Paid' => 'Not Paid']);
+            $form->select('orderStatus', 'Order Status')->options(['Shipped' => 'Shipped', 'Not Shipped' => 'Not Shipped']);;
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');

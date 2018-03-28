@@ -9,6 +9,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public $incrementing = false;
+    public $timestamps = false;
     protected $table = 'users';
     protected $fillable = ['name' , 'email' , 'province', 'city', 'district', 'zip', 'phone', 'gender'];
     protected $hidden = ['password'];

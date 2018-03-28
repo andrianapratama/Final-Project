@@ -268,16 +268,16 @@
         },
         {
             "name": "encore/laravel-admin",
-            "version": "v1.5.9",
+            "version": "v1.5.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/z-song/laravel-admin.git",
-                "reference": "4fd32e48d8aeb574685a5b502816657844bb405c"
+                "reference": "0b3050f3b172fac39b677c096bb87c447b24b2a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/z-song/laravel-admin/zipball/4fd32e48d8aeb574685a5b502816657844bb405c",
-                "reference": "4fd32e48d8aeb574685a5b502816657844bb405c",
+                "url": "https://api.github.com/repos/z-song/laravel-admin/zipball/0b3050f3b172fac39b677c096bb87c447b24b2a4",
+                "reference": "0b3050f3b172fac39b677c096bb87c447b24b2a4",
                 "shasum": ""
             },
             "require": {
@@ -334,7 +334,7 @@
                 "grid",
                 "laravel"
             ],
-            "time": "2018-01-23T05:40:02+00:00"
+            "time": "2018-03-27T16:20:07+00:00"
         },
         {
             "name": "erusev/parsedown",

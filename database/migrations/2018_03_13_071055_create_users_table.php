@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('city');
             $table->string('district');
             $table->integer('zip')->unsigned();
-            $table->integer('phone')->unsigned();
+            $table->string('phone')->unsigned();
             $table->string('gender');
             $table->timestamps();
         });

@@ -71,7 +71,7 @@ return [
         'disk' => 'admin',
 
         'directory' => [
-            'image' => 'images',
+            'image' => 'image',
             'file'  => 'files',
         ],
     ],

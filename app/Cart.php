@@ -6,7 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
 {
+
+    public $incrementing = false;
+    public $timestamps = false;
     protected $table = 'carts';
+    protected $casts = [
+        'id' => 'string'
+    ];
+    protected $primaryKey = "id";
 
     public function ProductDetail()
     {
@@ -21,10 +28,5 @@ class Cart extends Model
     public function Invoice()
     {
         return $this->hasOne(Invoice::class);
-    }
-
-    public function Cart()
-    {
-        return $this->belongsTo(Cart::class);
     }
 }

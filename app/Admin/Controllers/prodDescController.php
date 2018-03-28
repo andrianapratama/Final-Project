@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\ProductDesc;
+use App\ProductDetail;
 use App\User;
 
 use Encore\Admin\Form;
@@ -94,21 +95,22 @@ class prodDescController extends Controller
         return Admin::form(ProductDesc::class, function (Form $form) {
 
             $form->display('id', 'ID');
-            $form->select('size', 'Size')->options(['val1' => '28',
-                                                                  'val2' => '29',
-                                                                  'val3' => '30',
-                                                                  'val4' => '31',
-                                                                  'val5' => '32',
-                                                                  'val6' => '33',
-                                                                  'val7' => '34',
-                                                                  'val8' => '36',
-                                                                  'val9' => '38',
-                                                                  'val10' => '40',
-                                                                  'val11' => '41',
-                                                                  'val12' => '42',
-                                                                  'val13' => '43',
-                                                                  'val14' => '44',
-                                                                  'val15' => '45',]);
+            $form->select('descID','Description ID')->options(ProductDetail::all()->pluck('name', 'id'));
+            $form->select('size', 'Size')->options(['28' => '28',
+                                                                  '29' => '29',
+                                                                  '30' => '30',
+                                                                  '31' => '31',
+                                                                  '32' => '32',
+                                                                  '33' => '33',
+                                                                  '34' => '34',
+                                                                  '36' => '36',
+                                                                  '38' => '38',
+                                                                  '40' => '40',
+                                                                  '41' => '41',
+                                                                  '42' => '42',
+                                                                  '43' => '43',
+                                                                  '44' => '44',
+                                                                  '45' => '45',]);
             $form->number('stock', 'Stock');
 
             $form->display('created_at', 'Created At');

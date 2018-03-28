@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Category;
 use App\ProductDetail;
 use App\User;
 
@@ -98,6 +99,7 @@ class productDetailController extends Controller
         return Admin::form(ProductDetail::class, function (Form $form) {
 
             $form->display('id', 'ID');
+            $form->select('categoryID')->options(Category::all()->pluck('name', 'id'));
             $form->text('brand', 'Brand');
             $form->text('name', 'Name');
             $form->number('price', 'Price');
