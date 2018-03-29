@@ -20,7 +20,7 @@ class CreateProductDetailsTable extends Migration
             $table->string('brand');
             $table->string('name');
             $table->decimal('price')->unsigned();
-            $table->text('image');
+            $table->string('image');
             $table->string('description');
             $table->string('material');
             $table->timestamps();

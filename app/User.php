@@ -15,11 +15,15 @@ class User extends Authenticatable
     protected $fillable = ['name' , 'email' , 'province', 'city', 'district', 'zip', 'phone', 'gender'];
     protected $hidden = ['password'];
 
+    public function Transaction()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
     public function Invoice()
     {
         return $this->hasMany(Invoice::class);
     }
-
 
     public function User()
     {

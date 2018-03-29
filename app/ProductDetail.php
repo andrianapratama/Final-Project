@@ -19,6 +19,11 @@ class ProductDetail extends Model
         return $this->hasMany(ProductDesc::class);
     }
 
+    public function Transaction()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
     public function ProductDetail()
     {
         return $this->belongsTo(ProductDetail::class);

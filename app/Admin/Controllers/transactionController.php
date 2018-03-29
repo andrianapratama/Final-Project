@@ -2,7 +2,10 @@
 
 namespace App\Admin\Controllers;
 
-use App\Banner;
+use App\User;
+use App\Transaction;
+use App\ProductDetail;
+
 
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -11,7 +14,7 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 
-class bannerController extends Controller
+class transactionController extends Controller
 {
     use ModelForm;
 
@@ -71,12 +74,17 @@ class bannerController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(Banner::class, function (Grid $grid) {
+        return Admin::grid(Transaction::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
-            $grid->name('Name')->sortable();
-            $grid->caption('Caption')->sortable();
-            $grid->image('Image')->sortable();
+            $grid->productID('Product ID')->sortable();
+            $grid->userID('User ID')->sortable();
+            $grid->orderID('Order ID')->sortable();
+            $grid->quantity('Quantity')->sortable();
+            $grid->totalPrice('Total Price')->sortable();
+            $grid->orderDate('Order Date')->sortable();
+            $grid->paymentType('Payment Type')->sortable();
+            $grid->orderStatus('Order Status')->sortable();
 
             $grid->created_at();
             $grid->updated_at();
@@ -90,12 +98,17 @@ class bannerController extends Controller
      */
     protected function form()
     {
-        return Admin::form(Banner::class, function (Form $form) {
+        return Admin::form(Transaction::class, function (Form $form) {
 
             $form->display('id', 'ID');
-            $form->text('name', 'Name');
-            $form->text('caption', 'Caption');
-            $form->image('image', 'Image');
+            $form->select('userID')->options(User::all()->pluck('name', 'id'));
+            $form->select('productID')->options(ProductDetail::all()->pluck('name', 'id'));
+            $form->text('orderID', 'Order ID');
+            $form->number('quantity', 'Quantity');
+            $form->number('totalPrice', 'Total Price');
+            $form->date('orderDate', 'Order Date');
+            $form->select('paymentType', 'Payment Type')->options(['Bank Transfer' => 'Bank Transfer', 'Credit Card' => 'Credit Card']);;
+            $form->select('orderStatus', 'Order Status')->options(['Paid' => 'Paid', 'Not Paid' => 'Not Paid']);;
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
